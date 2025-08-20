@@ -1,0 +1,56 @@
+import { cva } from 'class-variance-authority';
+import React from 'react';
+
+import { cn } from '@dxp/ui/lib/utils';
+
+import { ContainerProps } from './Container.types';
+
+const containerVariants = cva('w-full mx-auto px-4 md:px-6', {
+    variants: {
+        variant: {
+            narrow: 'md:max-w-3xl',
+            wide: 'md:max-w-7xl',
+            full: 'md:max-w-10xl',
+        },
+        spacing: {
+            none: '',
+            small: 'py-6 md:py-6',
+            medium: 'py-16 md:py-20',
+            large: 'py-32 md:py-40',
+        },
+    },
+    defaultVariants: {
+        variant: 'full',
+        spacing: 'medium',
+    },
+});
+
+const containerBackgroundVariants = cva('w-full', {
+    variants: {
+        background: {
+            none: '',
+            light: 'bg-white !text-black',
+            dark: 'bg-black/80 !text-white',
+            brand: 'bg-primary/20',
+        },
+    },
+    defaultVariants: {
+        background: 'none',
+    },
+});
+
+export const Container: React.FC<ContainerProps> = ({
+    variant = 'full',
+    children,
+    className,
+    spacing = 'medium',
+    background = 'none',
+}) => {
+    return (
+        <div className={cn(containerBackgroundVariants({ background }), className)}>
+            <div className={containerVariants({ variant, spacing })}>
+                <div className="">{children}</div>
+            </div>
+        </div>
+    );
+};
