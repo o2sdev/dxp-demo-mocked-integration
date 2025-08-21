@@ -13,7 +13,7 @@ import { AppModule } from '../dist/src/app.module';
 let app;
 
 // TODO: check if code below an be unified with `main.ts` so there is no duplication
-export default async function handler(req, res) {
+module.exports = async function handler(req, res) {
     // Bootstrap our NestJS app on cold start
     if (!app) {
         const logLevel = process.env.LOG_LEVEL === 'info' ? 'log' : process.env.LOG_LEVEL;
@@ -65,4 +65,4 @@ export default async function handler(req, res) {
     const instance = httpAdapter.getInstance();
 
     instance(req, res);
-}
+};

@@ -19,7 +19,7 @@
     "routes": [
         {
             "src": "/(.*)",
-            "dest": "api/main.js"
+            "dest": "api/main.cjs"
         }
     ]
 }
