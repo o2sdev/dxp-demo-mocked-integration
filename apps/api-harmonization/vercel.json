@@ -11,7 +11,7 @@
     "installCommand": "npm install --prefix=../..",
     "outputDirectory": "dist",
     "functions": {
-        "api/main.cjs": {
+        "api/main.js": {
             "memory": 1024,
             "maxDuration": 30
         }
