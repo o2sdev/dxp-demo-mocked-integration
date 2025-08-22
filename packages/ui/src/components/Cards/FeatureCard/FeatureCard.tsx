@@ -20,10 +20,12 @@ export const FeatureCardContent: React.FC<FeatureCardProps> = ({ title, descript
                     {title}
                 </Typography>
 
-                <RichText content={description} baseFontSize="small" className="text-muted-foreground" />
+                {description && (
+                    <RichText content={description} baseFontSize="small" className="text-muted-foreground" />
+                )}
 
                 {link?.url && (
-                    <Link asChild variant="default" className="self-start">
+                    <Link asChild variant="link" size="default" className="self-start">
                         <LinkComponent href={link.url}>
                             <>
                                 {link.label}
@@ -55,7 +57,7 @@ export const FeatureCard: React.FC<Readonly<FeatureCardProps>> = (props) => {
         <div
             tabIndex={-1}
             onClick={() => props.link?.url && router.push(props.link?.url)}
-            className={cn(props.link?.url && 'cursor-pointer')}
+            className={cn('h-full w-full', props.link?.url && 'cursor-pointer')}
         >
             <FeatureCardContent {...props} />
         </div>
