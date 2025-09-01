@@ -15,6 +15,7 @@ import {
     NavigationMenuTrigger,
     navigationMenuTriggerStyle,
 } from '@dxp/ui/elements/navigation-menu';
+import { Separator } from '@dxp/ui/elements/separator';
 import { Typography } from '@dxp/ui/elements/typography';
 
 import { Link as NextLink, usePathname } from '@/i18n';
@@ -24,8 +25,15 @@ import { DesktopNavigationProps } from './DesktopNavigation.types';
 export function DesktopNavigation({ logoSlot, localeSlot, items }: DesktopNavigationProps) {
     const pathname = usePathname();
 
+    const itemClassNames =
+        'data-active:bg-transparent data-active:underline underline-offset-4 hover:!bg-transparent hover:underline';
+
     const activeNavigationGroup = items.find((item) => {
         if (item.__typename === 'NavigationGroup') {
+            if (item.url) {
+                return item.url && pathname.startsWith(item.url);
+            }
+
             return item.items
                 .filter((item) => item.__typename === 'NavigationItem')
                 .some((item) => {
@@ -40,10 +48,12 @@ export function DesktopNavigation({ logoSlot, localeSlot, items }: DesktopNaviga
         return item.url && pathname.includes(item.url);
     });
 
-    const navigationItemClass = cn(navigationMenuTriggerStyle());
+    const navigationItemClass = cn(navigationMenuTriggerStyle(), '!text-sm', itemClassNames);
 
     const getUrl = (item: Models.Navigation.NavigationGroup) => {
-        if (item.items[0]?.__typename === 'NavigationItem') {
+        if (item.url) {
+            return item.url;
+        } else if (item.items[0]?.__typename === 'NavigationItem') {
             return item.items[0].url;
         } else if (item.items[0]?.items[0]?.__typename === 'NavigationItem') {
             return item.items[0]?.items[0]?.url;
@@ -141,7 +151,14 @@ export function DesktopNavigation({ logoSlot, localeSlot, items }: DesktopNaviga
                                 {items.map((item) => {
                                     switch (item.__typename) {
                                         case 'NavigationItem':
-                                            return <NavigationItem item={item} key={item.label} active={false} />;
+                                            return (
+                                                <NavigationItem
+                                                    item={item}
+                                                    key={item.label}
+                                                    active={activeNavigationGroup?.url === item.url}
+                                                    className={cn(itemClassNames, 'hover:!text-navbar-primary')}
+                                                />
+                                            );
                                         case 'NavigationGroup':
                                             return (
                                                 <NavigationItem
@@ -151,7 +168,8 @@ export function DesktopNavigation({ logoSlot, localeSlot, items }: DesktopNaviga
                                                         __typename: 'NavigationItem',
                                                     }}
                                                     key={item.title}
-                                                    active={false}
+                                                    active={activeNavigationGroup?.url === getUrl(item)}
+                                                    className={cn(itemClassNames, 'hover:!text-navbar-primary')}
                                                 />
                                             );
                                     }
@@ -168,37 +186,43 @@ export function DesktopNavigation({ logoSlot, localeSlot, items }: DesktopNaviga
                 </div>
             </div>
 
+            <Separator className="border-navbar-border" />
+
             {/* Bottom Navigation Bar */}
             {activeNavigationGroup?.__typename === 'NavigationGroup' && (
-                <div className="w-full bg-navbar-sub-background">
-                    <div className="w-full m-auto max-w-7xl py-2 px-6">
-                        <NavigationMenu className="">
-                            <NavigationMenuList className="flex gap-3">
-                                {activeNavigationGroup?.items.map((item) => {
-                                    switch (item.__typename) {
-                                        case 'NavigationItem':
-                                            return (
-                                                <NavigationItem
-                                                    item={item}
-                                                    key={item.label}
-                                                    active={pathname === item.url}
-                                                    className="!text-base !text-navbar-sub-foreground hover:!text-navbar-sub-foreground hover:!bg-navbar-sub-accent"
-                                                />
-                                            );
-                                        case 'NavigationGroup':
-                                            return (
-                                                <NavigationGroup
-                                                    item={item}
-                                                    key={item.title}
-                                                    className="!text-base !text-navbar-sub-foreground hover:!text-navbar-sub-foreground hover:!bg-navbar-sub-accent"
-                                                />
-                                            );
-                                    }
-                                })}
-                            </NavigationMenuList>
-                        </NavigationMenu>
+                <>
+                    <div className="w-full bg-navbar-sub-background">
+                        <div className="w-full m-auto max-w-7xl py-2 px-6">
+                            <NavigationMenu className="">
+                                <NavigationMenuList className="flex gap-3">
+                                    {activeNavigationGroup?.items.map((item) => {
+                                        switch (item.__typename) {
+                                            case 'NavigationItem':
+                                                return (
+                                                    <NavigationItem
+                                                        item={item}
+                                                        key={item.label}
+                                                        active={pathname === item.url}
+                                                        className="!text-sm !text-navbar-sub-foreground hover:!text-navbar-sub-foreground"
+                                                    />
+                                                );
+                                            case 'NavigationGroup':
+                                                return (
+                                                    <NavigationGroup
+                                                        item={item}
+                                                        key={item.title}
+                                                        className="!text-sm !text-navbar-sub-foreground hover:!text-navbar-sub-foreground"
+                                                    />
+                                                );
+                                        }
+                                    })}
+                                </NavigationMenuList>
+                            </NavigationMenu>
+                        </div>
                     </div>
-                </div>
+
+                    <Separator className="border-navbar-border" />
+                </>
             )}
         </nav>
     );
