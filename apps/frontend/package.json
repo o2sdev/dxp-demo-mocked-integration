@@ -24,7 +24,7 @@
         "@dxp/blocks.pricing-section": "^0.1.2",
         "@dxp/blocks.quick-links": "^0.1.1",
         "@dxp/framework": "^0.2.1",
-        "@dxp/integrations.mocked": "^0.4.1",
+        "@dxp/integrations.mocked": "^0.4.3",
         "@dxp/ui": "*",
         "class-variance-authority": "^0.7.1",
         "date-fns": "^4.1.0",
