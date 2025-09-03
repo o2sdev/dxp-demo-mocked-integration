@@ -12,6 +12,7 @@ import { Link as NextLink } from '@/i18n';
 
 import { LocaleSwitcher } from '../Toolbar/LocaleSwitcher';
 
+import { DemoAlert } from './DemoAlert';
 import { DesktopNavigation } from './DesktopNavigation/DesktopNavigation';
 import { HeaderProps } from './Header.types';
 import { MobileNavigation } from './MobileNavigation/MobileNavigation';
@@ -38,22 +39,25 @@ export const Header: React.FC<HeaderProps> = ({ data, alternativeUrls, children 
     };
 
     return (
-        <header className="flex flex-col gap-4">
-            <>
-                <div className="md:block hidden">
-                    <DesktopNavigation logoSlot={LogoSlot} localeSlot={<LocaleSlot />} items={data.items} />
-                </div>
-                <div className="md:hidden">
-                    <MobileNavigation
-                        logoSlot={LogoSlot}
-                        localeSlot={<LocaleSlot />}
-                        items={data.items}
-                        title={data.title}
-                        mobileMenuLabel={data.mobileMenuLabel}
-                    />
-                </div>
-            </>
-            {children}
-        </header>
+        <>
+            <DemoAlert />
+            <header className="flex flex-col gap-4">
+                <>
+                    <div className="md:block hidden">
+                        <DesktopNavigation logoSlot={LogoSlot} localeSlot={<LocaleSlot />} items={data.items} />
+                    </div>
+                    <div className="md:hidden">
+                        <MobileNavigation
+                            logoSlot={LogoSlot}
+                            localeSlot={<LocaleSlot />}
+                            items={data.items}
+                            title={data.title}
+                            mobileMenuLabel={data.mobileMenuLabel}
+                        />
+                    </div>
+                </>
+                {children}
+            </header>
+        </>
     );
 };

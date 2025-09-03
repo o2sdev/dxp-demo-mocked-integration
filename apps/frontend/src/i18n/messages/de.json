@@ -1,5 +1,9 @@
 {
     "general": {
+        "close": "Schließen",
         "comingSoon": "Diese Funktion ist in Kürze verfügbar!"
+    },
+    "demoBar": {
+        "info": "Sie sehen gerade eine Demoversion, die beispielhaft ist - sie kann vollständig über das integrierte CMS verwaltet werden, alle Blöcke und Komponenten sowie das UI-Theme können angepasst werden."
     }
 }

@@ -1,5 +1,9 @@
 {
     "general": {
+        "close": "Zamknij",
         "comingSoon": "Ta funkcja będzie dostępna już wkrótce!"
+    },
+    "demoBar": {
+        "info": "Aktualnie przeglądasz wersję demonstracyjną, która jest przykładowa - można nią w pełni zarządzać z poziomu zintegrowanego CMS-a, wszystkie bloki i komponenty oraz motyw interfejsu użytkownika mogą być dostosowane."
     }
 }

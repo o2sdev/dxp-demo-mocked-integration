@@ -1,5 +1,9 @@
 {
     "general": {
+        "close": "Close",
         "comingSoon": "This feature is coming soon!"
+    },
+    "demoBar": {
+        "info": "You are currently viewing a demo that is exemplary - it can be fully managed from the integrated CMS, all blocks and components, as well as the UI theme can be customized."
     }
 }
