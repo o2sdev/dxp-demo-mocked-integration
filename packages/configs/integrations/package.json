@@ -17,7 +17,7 @@
     },
     "dependencies": {
         "@dxp/framework": "^0.2.1",
-        "@dxp/integrations.mocked": "^0.4.3",
+        "@dxp/integrations.mocked": "^0.4.4",
         "@dxp/integrations.strapi-cms": "^0.3.0"
     },
     "devDependencies": {
