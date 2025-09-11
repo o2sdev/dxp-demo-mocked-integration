@@ -20,7 +20,12 @@
         "generate:component": "turbo gen api-component"
     },
     "dependencies": {
+        "@dxp/blocks.article": "^1.1.0",
+        "@dxp/blocks.article-list": "^1.1.0",
+        "@dxp/blocks.article-search": "^1.1.0",
         "@dxp/blocks.bento-grid": "^0.1.1",
+        "@dxp/blocks.category": "^1.1.0",
+        "@dxp/blocks.category-list": "^1.1.0",
         "@dxp/blocks.cta-section": "^0.1.2",
         "@dxp/blocks.document-list": "^0.1.1",
         "@dxp/blocks.faq": "^0.1.2",
@@ -31,8 +36,8 @@
         "@dxp/blocks.pricing-section": "^0.1.2",
         "@dxp/blocks.quick-links": "^0.1.1",
         "@dxp/configs.integrations": "*",
-        "@dxp/framework": "^0.2.1",
-        "@dxp/integrations.mocked": "^0.4.4",
+        "@dxp/framework": "^0.3.0",
+        "@dxp/integrations.mocked": "^0.5.0",
         "@dxp/utils.api-harmonization": "^0.0.5",
         "@nestjs/axios": "^4.0.0",
         "@nestjs/common": "^11.1.1",
