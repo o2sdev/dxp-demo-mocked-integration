@@ -7,7 +7,6 @@ import React, { useState } from 'react';
 
 import { Button } from '@dxp/ui/elements/button';
 import { Collapsible, CollapsibleContent, CollapsibleTrigger } from '@dxp/ui/elements/collapsible';
-import { Link } from '@dxp/ui/elements/link';
 import { Typography } from '@dxp/ui/elements/typography';
 
 export const DemoAlert = () => {
@@ -27,9 +26,7 @@ export const DemoAlert = () => {
                 <div className="bg-primary text-primary-foreground">
                     <div className="px-4 md:px-6 py-2 ml-auto mr-auto w-full md:max-w-7xl">
                         <div className="flex gap-4 items-center justify-between">
-                            <Typography variant="small">
-                                {t('demoBar.info')}
-                            </Typography>
+                            <Typography variant="small">{t('demoBar.info')}</Typography>
 
                             <CollapsibleTrigger asChild>
                                 <Button variant="ghost" size="sm" className="w-9 p-0 shrink-0">
