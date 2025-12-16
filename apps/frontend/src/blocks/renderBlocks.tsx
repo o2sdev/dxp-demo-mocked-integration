@@ -44,7 +44,11 @@ export const renderBlocks = async (blocks: CMS.Model.Page.SlotBlock[], slug: str
 
     let modifiedBlocks = blocks;
 
-    if (slug[0] === 'personal' && slug[1] === 'insurance' && slug[2] === 'travel-insurance') {
+    if (
+        (slug[0] === 'personal' && slug[1] === 'insurance' && slug[2] === 'travel-insurance') ||
+        (slug[0] === 'indywidualny' && slug[1] === 'ubezpieczenia' && slug[2] === 'ubezpieczenie-podrozy') ||
+        (slug[0] === 'personlich' && slug[1] === 'versicherungen' && slug[2] === 'reiseversicherung')
+    ) {
         modifiedBlocks = [
             ...modifiedBlocks.slice(0, 3),
             {
