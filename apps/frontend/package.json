@@ -3,7 +3,7 @@
     "version": "1.8.3",
     "private": true,
     "scripts": {
-        "dev": "next dev --turbopack",
+        "dev": "dotenv -e .env.development -- next dev --turbopack",
         "dev:https": "next dev --turbopack --experimental-https",
         "build": "next build",
         "postbuild": "cp -r public .next/standalone/apps/frontend && cp -r .next/static .next/standalone/apps/frontend/.next/",
@@ -29,6 +29,7 @@
         "@dxp/blocks.media-section": "^0.2.0",
         "@dxp/blocks.pricing-section": "^0.2.0",
         "@dxp/blocks.quick-links": "^0.2.0",
+        "@dxp/blocks.embed": "*",
         "@dxp/framework": "^0.3.0",
         "@dxp/integrations.mocked": "^0.6.0",
         "@dxp/ui": "*",

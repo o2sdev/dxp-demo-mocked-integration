@@ -9,6 +9,7 @@ import * as CategoryList from '@dxp/blocks.category-list/frontend';
 import * as Category from '@dxp/blocks.category/frontend';
 import * as CtaSection from '@dxp/blocks.cta-section/frontend';
 import * as DocumentList from '@dxp/blocks.document-list/frontend';
+import * as Embed from '@dxp/blocks.embed/frontend';
 import * as Faq from '@dxp/blocks.faq/frontend';
 import * as FeatureSectionGrid from '@dxp/blocks.feature-section-grid/frontend';
 import * as FeatureSection from '@dxp/blocks.feature-section/frontend';
@@ -41,7 +42,24 @@ export const renderBlocks = async (blocks: CMS.Model.Page.SlotBlock[], slug: str
     const session = await auth();
     const locale = await getLocale();
 
-    return blocks.map((block, index) => {
+    let modifiedBlocks = blocks;
+
+    if (slug[0] === 'personal' && slug[1] === 'insurance' && slug[2] === 'travel-insurance') {
+        modifiedBlocks = [
+            ...modifiedBlocks.slice(0, 3),
+            {
+                __typename: 'EmbedBlock',
+                id: 'embed-block-1',
+                layout: {
+                    spacing: 'none',
+                    variant: 'wide',
+                },
+            },
+            ...modifiedBlocks.slice(3),
+        ];
+    }
+
+    return modifiedBlocks.map((block, index) => {
         // decides whether the block is above the fold,
         // e.g., to disable image lazy loading
         const hasPriority = index < 2;
@@ -101,6 +119,17 @@ const renderBlock = (typename: string, blockProps: BlockProps) => {
             return <Article.Renderer {...blockProps} />;
         case 'ArticleSearchBlock':
             return <ArticleSearch.Renderer {...blockProps} />;
+        case 'EmbedBlock':
+            return (
+                <Embed.Renderer
+                    {...blockProps}
+                    block={{
+                        domain: 'https://pko-leasing-demo-frontend.vercel.app/',
+                        name: 'RecomendedOffersBlock',
+                        id: 'recomended-offers-1',
+                    }}
+                />
+            );
         // BLOCK REGISTER
         default:
             return null;

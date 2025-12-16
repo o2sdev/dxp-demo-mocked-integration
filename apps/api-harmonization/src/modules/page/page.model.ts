@@ -82,4 +82,5 @@ export type Blocks =
     | ArticleList.Model.ArticleListBlock['__typename']
     | Category.Model.CategoryBlock['__typename']
     | Article.Model.ArticleBlock['__typename']
-    | ArticleSearch.Model.ArticleSearchBlock['__typename'];
+    | ArticleSearch.Model.ArticleSearchBlock['__typename']
+    | 'EmbedBlock';
