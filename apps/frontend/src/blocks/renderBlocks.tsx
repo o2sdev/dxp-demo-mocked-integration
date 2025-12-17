@@ -56,7 +56,7 @@ export const renderBlocks = async (blocks: CMS.Model.Page.SlotBlock[], slug: str
                 id: 'embed-block-1',
                 layout: {
                     spacing: 'none',
-                    variant: 'wide',
+                    variant: 'full',
                 },
             },
             ...modifiedBlocks.slice(3),
@@ -130,7 +130,7 @@ const renderBlock = (typename: string, blockProps: BlockProps) => {
                     block={{
                         domain: 'https://pko-leasing-demo-frontend.vercel.app/',
                         name: 'RecomendedOffersBlock',
-                        id: 'recomended-offers-1',
+                        id: '1Kr29v7dlcY8qS5mfeIYQc',
                     }}
                 />
             );
